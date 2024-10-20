@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import InputBox from './components/inputBox'
 
 
 function App() {
@@ -6,9 +7,10 @@ function App() {
 
   return (
     <>
-    <h1 className="border p-4 m-4 rounded-xl border-5 border-red-700text-3xl font-bold underline bg-red-500">
-      Hello world!
-    </h1>
+    <div className='flex justify-center items-center h-screen w-screen'>
+      <InputBox/>
+    </div>
+
 
     </>
   )
