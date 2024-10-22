@@ -3,8 +3,8 @@ import parseTokensToAST from "./parseTokensToAST.js";
 
 const createAST=(ruleStr)=>{
     const tokens = tokenize(ruleStr);
-    console.log("tokenize: ");
-    console.log(tokens);
+    // console.log("tokenize: ");
+    // console.log(tokens);
     const ast = parseTokensToAST(tokens);
     
     // console.log(ast);

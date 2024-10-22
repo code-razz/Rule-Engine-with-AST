@@ -8,6 +8,7 @@ const ruleSchema = new mongoose.Schema({
     ast: {
         type: Object,
         required: true
+        // default:{asta:"kdfj"}
     },
     metadata: {
         createdAt: {
