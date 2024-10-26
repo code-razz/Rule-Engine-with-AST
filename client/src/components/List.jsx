@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import createAST from '../functions/createAST_new';
 import ASTViewer from './ASTViewer_new';
 import DataEvaluator from './DataEvaluator.jsx';
+import validateRule from '../functions/validateRule.js';
 
 function List({onRerender,rule}) {
   const [isRuleEditable, setIsRuleEditable] = useState(false)
@@ -15,13 +16,18 @@ function List({onRerender,rule}) {
 //   const {updateRule, deleteRule, toggleComplete} = useRule()
 
   const updateRule = async() => {
-    const ast=createAST(ruleString)
-    try{
-        const res=await axios.put(`http://localhost:8800/api/rules/${rule._id}`,{ast:ast,ruleString:ruleString,metadata:{createdAt:rule.metadata.createdAt}})
-        console.log("update res",res)
-        setIsRuleEditable(false)
-    }catch(err){
-        console.log("update err",err)
+    if(validateRule(ruleString)){
+        const ast=createAST(ruleString)
+        try{
+            const res=await axios.put(`http://localhost:8800/api/rules/${rule._id}`,{ast:ast,ruleString:ruleString,metadata:{createdAt:rule.metadata.createdAt}})
+            console.log("update res",res)
+            setIsRuleEditable(false)
+            onRerender()
+        }catch(err){
+            console.log("update err",err)
+        }
+    }else{
+        alert("Typo in rule. Maybe missing parenthesis?")
     }
   }
 
