@@ -14,11 +14,26 @@ This project is a Rule Engine that uses Abstract Syntax Trees (AST) to parse and
 
 ## Features
 
-- Parse rule strings into ASTs for easy manipulation and evaluation.
-- Evaluate rules against data objects to determine if they meet specified conditions.
-- Combine multiple rules using logical operators.
-- RESTful API for managing rules in a [MongoDB](https://www.mongodb.com/) database.
-- User-friendly React frontend for rule creation, combination and evaluation.
+- 1. **Parsing Rule Strings**: The project can parse rule strings into [ASTs](https://youtube.com/results?search_query=abstract+syntax+tree) for easy manipulation. This allows for complex logical expressions to be structured and evaluated systematically.
+
+2. **Evaluating Rules**: The engine evaluates these parsed rules against data objects. It supports various operators such as `>`, `<`, `>=`, `<=`, `=`, `==`, `!=`, `AND`, `OR`, and `NOT`.
+
+3. **CRUD Operations for Rules**:
+   - **Create**: New rules can be created and stored in a database.
+   - **Read**: Existing rules can be retrieved from the database.
+   - **Update**: Existing rules can be updated.
+   - **Delete**: Rules can be deleted from the database.
+
+4. **Backend and Frontend Integration**: 
+   - The backend is built using [Node.js](https://nodejs.org/) and [Express](https://expressjs.com/), handling the logic for rule management and evaluation.
+   - The frontend is developed with [React](https://reactjs.org/), providing an interface for users to create, combine, and evaluate rules.
+
+5. **Database Interaction**: The project uses [MongoDB](https://www.mongodb.com/atlas/database) to store rules, including their string representation and AST, along with metadata such as creation and update timestamps.
+
+6. **Middleware for Timestamps**: The project includes middleware to automatically update the `updatedAt` field in the database whenever a rule is saved.
+
+These functionalities allow users to define complex rules in a string format, parse them into a structured format, and evaluate them against various data objects, making it a versatile tool for rule-based logic applications.
+ 
 
 ## Prerequisites
 
