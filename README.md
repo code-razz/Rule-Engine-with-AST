@@ -14,7 +14,7 @@ This project is a Rule Engine that uses Abstract Syntax Trees (AST) to parse and
 
 ## Features
 
-- 1. **Parsing Rule Strings**: The project can parse rule strings into [ASTs](https://youtube.com/results?search_query=abstract+syntax+tree) for easy manipulation. This allows for complex logical expressions to be structured and evaluated systematically.
+1. **Parsing Rule Strings**: The project can parse rule strings into [ASTs](https://youtube.com/results?search_query=abstract+syntax+tree) for easy manipulation. This allows for complex logical expressions to be structured and evaluated systematically.
 
 2. **Evaluating Rules**: The engine evaluates these parsed rules against data objects. It supports various operators such as `>`, `<`, `>=`, `<=`, `=`, `==`, `!=`, `AND`, `OR`, and `NOT`.
 
