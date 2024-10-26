@@ -67,7 +67,10 @@ const ASTViewer = ({ ast }) => {
     );
 
     return (
+        <>
+                <h2 className="text-2xl mt-6 -mb-10 font-bold text-gray-700 text-center">AST Tree</h2>
         <div ref={containerRef} style={{ width: "100%", height: "500px" }}>
+
             <Tree
                 data={data}
                 orientation="vertical"
@@ -81,6 +84,7 @@ const ASTViewer = ({ ast }) => {
                 scaleExtent={{ min: 0.5, max: 2 }}  // Enables zoom with min and max limits
             />
         </div>
+        </>
     );
 };
 

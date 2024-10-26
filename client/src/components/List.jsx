@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import createAST from '../functions/createAST_new';
 import ASTViewer from './ASTViewer_new';
+import DataEvaluator from './DataEvaluator.jsx';
 
 function List({onRerender,rule}) {
   const [isRuleEditable, setIsRuleEditable] = useState(false)
   const [ruleString, setRuleString] = useState(rule.ruleString)
   const [isDisplayAST,setIsDisplayAST]=useState(false)
+  const [isDisplayDataEvaluator,setIsDisplayDataEvaluator]=useState(false)
 //   useEffect(()=>{
 //     setRuleString(rule.ruleString)
 //   },[])
@@ -74,17 +76,26 @@ return (
         </button>
         <button
             className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
+            onClick={()=>setIsDisplayDataEvaluator(!isDisplayDataEvaluator)}
+        >
+            🧮
+        </button>
+        <button
+            className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
             onClick={deleteRule}
         >
             ❌
         </button>
     </div>
-    <div className='flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black'>
+    <div className='border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black'>
+        {isDisplayDataEvaluator?
+        <>   
+        <DataEvaluator ast={rule.ast}/>
+        </>
+         :<></>
+        }
         {isDisplayAST?
-        <>
-        {/* <ASTDisplay ast={rule.ast} /> */}
-        {/* <ASTDisplayTree ast={rule.ast}/> */}
-        
+        <>   
         <ASTViewer ast={rule.ast}/>
         </>
          :<></>
