@@ -7,7 +7,7 @@ const createAST=(ruleStr)=>{
     // console.log(tokens);
     const ast = parseTokensToAST(tokens);
     
-    // console.log(ast);
+    console.log(ast);
     return ast;
 
 

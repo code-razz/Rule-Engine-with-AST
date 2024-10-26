@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import createAST from '../functions/createASt';
+import createAST from '../functions/createAST_new';
+import ASTViewer from './ASTViewer_new';
 
 function List({onRerender,rule}) {
   const [isRuleEditable, setIsRuleEditable] = useState(false)
   const [ruleString, setRuleString] = useState(rule.ruleString)
+  const [isDisplayAST,setIsDisplayAST]=useState(false)
 //   useEffect(()=>{
 //     setRuleString(rule.ruleString)
 //   },[])
@@ -33,8 +35,10 @@ function List({onRerender,rule}) {
         console.log("delete err",err)
     }
   }
+//   console.log(rule.ast)
 
 return (
+    <>
     <div className="flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black">
         <input
             type="text"
@@ -64,11 +68,29 @@ return (
         {/* Delete Rule Button */}
         <button
             className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
+            onClick={()=>setIsDisplayAST(!isDisplayAST)}
+        >
+            AST
+        </button>
+        <button
+            className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
             onClick={deleteRule}
         >
             ❌
         </button>
     </div>
+    <div className='flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black'>
+        {isDisplayAST?
+        <>
+        {/* <ASTDisplay ast={rule.ast} /> */}
+        {/* <ASTDisplayTree ast={rule.ast}/> */}
+        
+        <ASTViewer ast={rule.ast}/>
+        </>
+         :<></>
+        }
+    </div>
+    </>
 );
 }
 

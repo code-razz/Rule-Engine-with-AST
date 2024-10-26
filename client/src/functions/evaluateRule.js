@@ -1,4 +1,4 @@
-const evaluateAST=(node, data)=>{
+const evaluateAST = (node, data) => {
     if (node.type === 'operand') {
         // Extract the attribute, operator, and value from the node's value
         const [attribute, operator, value] = node.value.split(' ');
@@ -19,6 +19,8 @@ const evaluateAST=(node, data)=>{
                 return dataValue >= parsedValue;
             case '<=':
                 return dataValue <= parsedValue;
+            case '=':
+                return dataValue == parsedValue;
             case '==':
                 return dataValue == parsedValue;
             case '!=':
@@ -27,7 +29,12 @@ const evaluateAST=(node, data)=>{
                 throw new Error(`Unsupported operator: ${operator}`);
         }
     } else if (node.type === 'operator') {
-        // Recursively evaluate the left and right nodes
+        // Check for NOT operator, which only has a left node
+        if (node.value === 'NOT') {
+            return !evaluateAST(node.left, data);
+        }
+
+        // Recursively evaluate the left and right nodes for AND/OR operators
         const leftResult = evaluateAST(node.left, data);
         const rightResult = evaluateAST(node.right, data);
 
@@ -42,7 +49,6 @@ const evaluateAST=(node, data)=>{
     } else {
         throw new Error(`Unsupported node type: ${node.type}`);
     }
-}
+};
 
-
-export default evaluateAST
+export default evaluateAST;
