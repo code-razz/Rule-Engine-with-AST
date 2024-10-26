@@ -39,6 +39,10 @@ This project is a Rule Engine that uses Abstract Syntax Trees (AST) to parse and
 These functionalities allow users to define complex rules in a string format, parse them into a structured format, and evaluate them against various data objects, making it a versatile tool for rule-based logic applications.
  
 
+
+https://github.com/user-attachments/assets/959e8a6d-99c9-4296-888c-fbb5acb02704
+
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
