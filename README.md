@@ -12,6 +12,10 @@ This project is a Rule Engine that uses Abstract Syntax Trees (AST) to parse and
 - [Contributing](#contributing)
 - [License](#license)
 
+## NOTE: 
+- The UI is made simple as I have put more effort on building the functionality of the application.
+- There are some unnecessary comments which was used while development (for testing and other purposes) and will be cleared.
+
 ## Features
 
 1. **Parsing Rule Strings**: The project can parse rule strings into [ASTs](https://youtube.com/results?search_query=abstract+syntax+tree) for easy manipulation. This allows for complex logical expressions to be structured and evaluated systematically.
