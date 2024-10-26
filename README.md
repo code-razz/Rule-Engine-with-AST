@@ -80,10 +80,15 @@ Before you begin, ensure you have met the following requirements:
 
 ### Interacting with the Application
 
-- Use the frontend interface to create, combine, and evaluate rules.
+1. Use the frontend interface to create, combine, and evaluate rules.
+- ![image](https://github.com/user-attachments/assets/d3210c9d-d8f2-4783-adc6-181a91cfc23b)
+-- The four buttons allows 4 features: (for each Rule String)
+- - Edit Rule String, 
+- - Show AST Tree
+- - Evaluate AST with user Data and
+- - Delete the Rule string
 
-- The backend API provides endpoints for creating, updating, deleting, and retrieving rules.
-
+2. The backend API provides endpoints for creating, updating, deleting, and retrieving rules.
 ## Project Structure
 
 - **backend**: Contains the server-side code, including API routes and database models.
