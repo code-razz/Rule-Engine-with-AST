@@ -1,11 +1,12 @@
-function parseRuleString(ruleString) {
-    console.log("newAst")
-    // Tokenize the input string
-    const tokens = ruleString.match(/\(|\)|[^\s()]+/g);
+function tokenize(ruleString) {
+    // Match parentheses, logical operators, comparison operators, and terms without requiring spaces
+    return ruleString.match(/([()])|AND|OR|NOT|[a-zA-Z_]+|[><=!]+|'[^']+'|\d+/g);
+}
 
+function parseRuleString(ruleString) {
+    const tokens = tokenize(ruleString);
     let index = 0;
 
-    // Parse tokens into an AST
     function parseExpression() {
         let left = parseTerm();
 
@@ -13,7 +14,7 @@ function parseRuleString(ruleString) {
             const operator = tokens[index];
 
             if (operator === 'AND' || operator === 'OR') {
-                index++; // consume operator
+                index++; // Consume operator
                 const right = parseTerm();
                 left = {
                     type: 'operator',
@@ -29,17 +30,16 @@ function parseRuleString(ruleString) {
         return left;
     }
 
-    // Parse terms, which could be operands or expressions within parentheses
     function parseTerm() {
         const token = tokens[index];
 
         if (token === '(') {
-            index++; // consume '('
+            index++; // Consume '('
             const expr = parseExpression();
-            index++; // consume ')'
+            index++; // Consume ')'
             return expr;
         } else if (token === 'NOT') {
-            index++; // consume 'NOT'
+            index++; // Consume 'NOT'
             const operand = parseTerm();
             return {
                 type: 'operator',
@@ -52,7 +52,6 @@ function parseRuleString(ruleString) {
         }
     }
 
-    // Parse a single operand (e.g., "age > 30" or "department = 'Sales'")
     function parseOperand() {
         const field = tokens[index++];
         const operator = tokens[index++];
@@ -66,13 +65,12 @@ function parseRuleString(ruleString) {
         };
     }
 
-    // Initiate parsing and return the result
     return parseExpression();
 }
 
-// Example usage:
-// const ruleString = "((salary > 50000 OR (department = 'Engineering' AND (age < 30 OR yearsOfExperience >= 5))) AND NOT (location = 'Remote' OR (age >= 40 AND title = 'Manager')))";
+// Example usage
+// const ruleString = "((age>30 AND department='Sales') OR (age<25 AND department='Marketing'))";
 // const ast = parseRuleString(ruleString);
 // console.log(JSON.stringify(ast, null, 2));
 
-export default parseRuleString
+export default parseRuleString;
