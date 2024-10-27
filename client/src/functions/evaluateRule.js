@@ -4,10 +4,15 @@ const evaluateAST = (node, data) => {
         const [attribute, operator, value] = node.value.split(' ');
 
         // Get the actual value from the data object
-        const dataValue = data[attribute];
+        const dataVal = data[attribute.toLowerCase()];
+        const dataValue=isNaN(dataVal) ? dataVal.toLowerCase() : dataVal;
 
         // Convert value to the correct type (number or string)
-        const parsedValue = isNaN(value) ? value.replace(/'/g, '') : Number(value);
+        const parsedValue = isNaN(value) ? value.replace(/'/g, '').toLowerCase() : Number(value);
+        
+        console.log("Data Val",dataVal)
+        console.log("Data Value",dataValue)
+        console.log("Parsed Val",parsedValue)
 
         // Evaluate the condition based on the operator
         switch (operator) {
@@ -20,7 +25,6 @@ const evaluateAST = (node, data) => {
             case '<=':
                 return dataValue <= parsedValue;
             case '=':
-                return dataValue == parsedValue;
             case '==':
                 return dataValue == parsedValue;
             case '!=':
